@@ -32,7 +32,7 @@ The Classic Era list was filtered against the CurseForge API: a project is
 kept only when it publishes a Forever (1.60.x) or Mainline (12.x/11.x) file.
 Everything else has no Forever counterpart and was removed.
 
-### Kept (24)
+### Kept (25)
 
 | Addon | Newest compatible file | Version family |
 | --- | --- | --- |
@@ -45,6 +45,7 @@ Everything else has no Forever counterpart and was removed.
 | BugGrabber | v12.1.1 | 1.60.1 |
 | BugSack | v12.1.9 | 1.60.1 |
 | Decursive | 2.9.0-RC4-forever | 1.60.1 |
+| DungeonsForever | DungeonsForever2.0.17.zip | 1.60.1 |
 | idTip | 12.1.8 | 1.60.1 |
 | MessageQueue | MessageQueue 0.9.4 | 1.60.1 |
 | MinimapButtonButton | 1.24.15 | 1.60.1 |

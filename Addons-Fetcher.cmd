@@ -84,6 +84,7 @@ $Projects = @(
   @{ Name = 'BugGrabber';               Id = 13344   },
   @{ Name = 'BugSack';                  Id = 6273    },
   @{ Name = 'Decursive';                Id = 2154    },
+  @{ Name = 'DungeonsForever';          Id = 1709577 },
   @{ Name = 'idTip';                    Id = 24541   },
   @{ Name = 'MessageQueue';             Id = 358350  },
   @{ Name = 'MinimapButtonButton';      Id = 446096  },
