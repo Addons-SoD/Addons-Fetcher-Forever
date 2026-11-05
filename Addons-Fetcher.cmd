@@ -90,6 +90,8 @@ $Projects = @(
   @{ Name = 'MinimapButtonButton';      Id = 446096  },
   @{ Name = 'Myslot';                   Id = 48863   },
   @{ Name = 'Profession_Assistance';    Id = 65085   },
+  @{ Name = 'Questie';                  Id = 334372  },
+  @{ Name = 'QuestieDB';                Id = 1696795 },
   @{ Name = 'RangeDisplay';             Id = 14570   },
   @{ Name = 'RareScanner';              Id = 84208   },
   @{ Name = 'SpellActivationOverlay';   Id = 649417  },
