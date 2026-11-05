@@ -1540,17 +1540,19 @@ while($tarQueue.Count -gt 0 -or $tActive.Count -gt 0){
 }
 Finish-Line
 
-# Known upstream bugs that only surface on Forever are patched here, on the
-# freshly extracted files and before the md5 snapshot (so the patched state is
-# what gets recorded and later runs see the addon as intact).
-$script:BugFixed = New-Object System.Collections.Generic.List[string]
+# Known upstream bugs that only surface on Forever are patched here. The stage
+# runs for freshly extracted addons AND for already deployed ones (so an
+# existing install gets repaired too); the md5 snapshot is refreshed afterwards
+# for every folder that was changed.
+$script:BugFixed      = New-Object System.Collections.Generic.List[string]
+$script:BugFixedNames = New-Object System.Collections.Generic.List[string]
 
 function Repair-KnownUpstreamBug([string]$dir){
   $name = Split-Path -Leaf $dir
   try{
     switch($name){
       'LoonBestInSlot' {
-        # Level-60 client has no Death Knight / Monk class, so
+        # The level-60 client has no Death Knight / Monk class, so
         # CLASS_NAMES.DEATHKNIGHT / .MONK are nil and the localization file
         # dies with "table index is nil" while loading.
         $p = Join-Path $dir 'Localization\localization.core.lua'
@@ -1568,28 +1570,47 @@ function Repair-KnownUpstreamBug([string]$dir){
           if($changed){
             [IO.File]::WriteAllBytes($p, $latin1.GetBytes($text))
             $script:BugFixed.Add($name + ' (class list nil guard)') | Out-Null
+            return $true
           }
         }
+        return $false
       }
     }
   }catch{
     $script:TocWarn.Add($name + ' (patch failed: ' + $_.Exception.Message + ')') | Out-Null
   }
+  return $false
 }
 
-# TOC normalisation for the freshly extracted CurseForge addons. It runs
-# BEFORE the md5 snapshot so a later run sees the patched files as intact.
-$tocCf = @($resolved | Where-Object { $_.Plan -eq 'download' -and ($extractOk -contains $_.Name) -and @($_.Folders).Count -gt 0 })
+# Folders of a resolved entry: the fresh extraction list, or the folders
+# recorded in the state when the addon was verified up to date.
+function Get-EntryFolders($r){
+  if(@($r.Folders).Count -gt 0){ return @($r.Folders) }
+  if($deployState -and $deployState.cf -and $deployState.cf.($r.Name) -and $deployState.cf.($r.Name).folders){
+    return @($deployState.cf.($r.Name).folders)
+  }
+  return @()
+}
+
+# TOC normalisation + known upstream fixes, for fresh and already-deployed
+# CurseForge addons. Runs BEFORE the md5 snapshot.
+$tocCf = @($resolved | Where-Object { ($extractOk -contains $_.Name) -or $cfSkipOk.ContainsKey($_.Name) })
 if($tocCf.Count -gt 0){
   Write-Host ''
   Write-Host ('[4b] Normalising TOC interface (16001) for ' + $tocCf.Count + ' addon(s) ...') -ForegroundColor Green
-  foreach($r in $tocCf){ foreach($fd in @($r.Folders)){ Repair-ForeverToc (Join-Path $DeployDir $fd) } }
+  foreach($r in $tocCf){
+    foreach($fd in (Get-EntryFolders $r)){
+      $dir = Join-Path $DeployDir $fd
+      if(-not (Test-Path -LiteralPath $dir)){ continue }
+      Repair-ForeverToc $dir
+      if(Repair-KnownUpstreamBug $dir){ $script:BugFixedNames.Add($r.Name) | Out-Null }
+    }
+  }
   if($script:TocChanged.Count -gt 0){
     $shown = @($script:TocChanged | Select-Object -First 8) -join ', '
     if($script:TocChanged.Count -gt 8){ $shown += ' ...' }
     Write-Host (Truncate-Text ('  interface 16001 added: ' + $shown) $ConWidth) -ForegroundColor Gray
   }
-  foreach($r in $tocCf){ foreach($fd in @($r.Folders)){ Repair-KnownUpstreamBug (Join-Path $DeployDir $fd) } }
   if($script:BugFixed.Count -gt 0){
     Write-Host (Truncate-Text ('  upstream fix applied: ' + ($script:BugFixed -join ', ')) $ConWidth) -ForegroundColor Gray
   }
@@ -1766,6 +1787,26 @@ foreach($s in $freshSod){
   if($sodMd5.ContainsKey($s.Folder)){ $md5 = $sodMd5[$s.Folder] }
   $sodState[$s.Folder] = @{ etag = $sodEtag[$s.Folder]; md5 = $md5; folders = @($s.Folder) }
 }
+# Folders patched by the upstream-fix stage need a fresh md5, otherwise the
+# next run would see a mismatch and re-download them once for nothing.
+if($script:BugFixedNames.Count -gt 0){
+  $repatch = @()
+  foreach($n in ($script:BugFixedNames | Select-Object -Unique)){
+    if($cfState.ContainsKey($n) -and $cfState[$n].folders){
+      $repatch += @{ Key=$n; Folders=@($cfState[$n].folders) }
+    }
+  }
+  if($repatch.Count -gt 0){
+    $newMd5 = Invoke-Md5Parallel $repatch
+    foreach($rp in $repatch){
+      $n = $rp.Key
+      if($newMd5.ContainsKey($n) -and $newMd5[$n]){
+        $cfState[$n] = @{ fileId = [string]$cfState[$n].fileId; md5 = $newMd5[$n]; folders = @($cfState[$n].folders) }
+      }
+    }
+  }
+}
+
 Write-DeployState @{ cf = $cfState; sod = $sodState }
 
 # ------------------------------- cleanup ------------------------------------
