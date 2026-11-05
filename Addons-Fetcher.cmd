@@ -1585,9 +1585,15 @@ function Repair-KnownUpstreamBug([string]$dir){
 # Folders of a resolved entry: the fresh extraction list, or the folders
 # recorded in the state when the addon was verified up to date.
 function Get-EntryFolders($r){
-  if(@($r.Folders).Count -gt 0){ return @($r.Folders) }
+  # NB: @($r.Folders).Count is 1 for a missing property, so check for a real
+  # non-null element instead of just counting.
+  if($null -ne $r.Folders){
+    $fresh = @($r.Folders)
+    if($fresh.Count -gt 0 -and $null -ne $fresh[0]){ return $fresh }
+  }
   if($deployState -and $deployState.cf -and $deployState.cf.($r.Name) -and $deployState.cf.($r.Name).folders){
-    return @($deployState.cf.($r.Name).folders)
+    $stored = @($deployState.cf.($r.Name).folders)
+    if($stored.Count -gt 0 -and $null -ne $stored[0]){ return $stored }
   }
   return @()
 }
