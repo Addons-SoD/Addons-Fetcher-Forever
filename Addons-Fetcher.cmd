@@ -107,7 +107,6 @@ $Projects = @(
 # Each entry: repo name on GitHub -> addon folder name -> branch to fetch.
 $OwnRepos = @(
   @{ Repo = 'RepairHelper-Forever';    Folder = 'RepairHelper';    Branch = 'main' },
-  @{ Repo = 'SellerHelper-Forever';    Folder = 'SellerHelper';    Branch = 'main' },
   @{ Repo = 'TheBurningTrade-Forever'; Folder = 'TheBurningTrade'; Branch = 'main' },
   @{ Repo = 'WhisperPop-Forever';      Folder = 'WhisperPop';      Branch = 'main' }
 )

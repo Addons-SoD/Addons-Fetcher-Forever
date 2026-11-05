@@ -100,24 +100,24 @@ existing `*-SoD` naming). The deployer always fetches the `main` branch of
 those repositories, so the Classic Era / Season of Discovery repositories
 are never referenced and their addon state is never touched.
 
-Deployed by default (4):
+Deployed by default (3):
 
 | Addon | Repository |
 | --- | --- |
 | RepairHelper | [RepairHelper-Forever](https://github.com/Addons-SoD/RepairHelper-Forever) |
-| SellerHelper | [SellerHelper-Forever](https://github.com/Addons-SoD/SellerHelper-Forever) |
 | TheBurningTrade | [TheBurningTrade-Forever](https://github.com/Addons-SoD/TheBurningTrade-Forever) |
 | WhisperPop | [WhisperPop-Forever](https://github.com/Addons-SoD/WhisperPop-Forever) |
 
-Additional ports kept as `wow-forever` branches on their `*-SoD` repositories
-(not deployed here, not part of this addon set):
+Ported but not deployed (repository stays on GitHub; add the entry back to
+`$OwnRepos` to deploy it):
 
-| Addon | Repository / branch |
-| --- | --- |
-| BFGadgets | `Addons-SoD/BFGadgets-SoD`, branch `wow-forever` |
-| BiaoGe | `Addons-SoD/BiaoGe-SoD`, branch `wow-forever` |
-| bloodOfHeros | `Addons-SoD/bloodOfHeros-SoD`, branch `wow-forever` |
-| MYStats | `Addons-SoD/MYStats-SoD`, branch `wow-forever` |
+| Addon | Repository | Note |
+| --- | --- | --- |
+| SellerHelper | [SellerHelper-Forever](https://github.com/Addons-SoD/SellerHelper-Forever) | removed on request - XML OnLoad handlers still fail on the 1.60 client |
+| BFGadgets | `Addons-SoD/BFGadgets-SoD` branch `wow-forever` | removed on request |
+| BiaoGe | `Addons-SoD/BiaoGe-SoD` branch `wow-forever` | removed on request |
+| bloodOfHeros | `Addons-SoD/bloodOfHeros-SoD` branch `wow-forever` | removed on request |
+| MYStats | `Addons-SoD/MYStats-SoD` branch `wow-forever` | removed on request |
 
 Porting rules applied to those addons:
 
