@@ -90,7 +90,6 @@ $Projects = @(
   @{ Name = 'MinimapButtonButton';      Id = 446096  },
   @{ Name = 'Myslot';                   Id = 48863   },
   @{ Name = 'Profession_Assistance';    Id = 65085   },
-  @{ Name = 'Questie';                  Id = 334372  },
   @{ Name = 'RangeDisplay';             Id = 14570   },
   @{ Name = 'RareScanner';              Id = 84208   },
   @{ Name = 'SpellActivationOverlay';   Id = 649417  },
@@ -1541,6 +1540,43 @@ while($tarQueue.Count -gt 0 -or $tActive.Count -gt 0){
 }
 Finish-Line
 
+# Known upstream bugs that only surface on Forever are patched here, on the
+# freshly extracted files and before the md5 snapshot (so the patched state is
+# what gets recorded and later runs see the addon as intact).
+$script:BugFixed = New-Object System.Collections.Generic.List[string]
+
+function Repair-KnownUpstreamBug([string]$dir){
+  $name = Split-Path -Leaf $dir
+  try{
+    switch($name){
+      'LoonBestInSlot' {
+        # Level-60 client has no Death Knight / Monk class, so
+        # CLASS_NAMES.DEATHKNIGHT / .MONK are nil and the localization file
+        # dies with "table index is nil" while loading.
+        $p = Join-Path $dir 'Localization\localization.core.lua'
+        if(Test-Path -LiteralPath $p){
+          $latin1 = [Text.Encoding]::GetEncoding(28591)
+          $text = $latin1.GetString([IO.File]::ReadAllBytes($p))
+          $changed = $false
+          foreach($cls in @('DEATHKNIGHT','MONK')){
+            $rx = '(?m)^(LBIS\.ENGLISH_CLASS\[CLASS_NAMES\.' + $cls + '\]\s*=\s*"[^"]*";)[ \t]*\r?$'
+            if([regex]::IsMatch($text, $rx)){
+              $text = [regex]::Replace($text, $rx, 'if CLASS_NAMES.' + $cls + ' then $1 end')
+              $changed = $true
+            }
+          }
+          if($changed){
+            [IO.File]::WriteAllBytes($p, $latin1.GetBytes($text))
+            $script:BugFixed.Add($name + ' (class list nil guard)') | Out-Null
+          }
+        }
+      }
+    }
+  }catch{
+    $script:TocWarn.Add($name + ' (patch failed: ' + $_.Exception.Message + ')') | Out-Null
+  }
+}
+
 # TOC normalisation for the freshly extracted CurseForge addons. It runs
 # BEFORE the md5 snapshot so a later run sees the patched files as intact.
 $tocCf = @($resolved | Where-Object { $_.Plan -eq 'download' -and ($extractOk -contains $_.Name) -and @($_.Folders).Count -gt 0 })
@@ -1552,6 +1588,10 @@ if($tocCf.Count -gt 0){
     $shown = @($script:TocChanged | Select-Object -First 8) -join ', '
     if($script:TocChanged.Count -gt 8){ $shown += ' ...' }
     Write-Host (Truncate-Text ('  interface 16001 added: ' + $shown) $ConWidth) -ForegroundColor Gray
+  }
+  foreach($r in $tocCf){ foreach($fd in @($r.Folders)){ Repair-KnownUpstreamBug (Join-Path $DeployDir $fd) } }
+  if($script:BugFixed.Count -gt 0){
+    Write-Host (Truncate-Text ('  upstream fix applied: ' + ($script:BugFixed -join ', ')) $ConWidth) -ForegroundColor Gray
   }
   if($script:TocWarn.Count -gt 0){
     Write-Host (Truncate-Text ('  TOC warnings: ' + ($script:TocWarn -join '; ')) $ConWidth) -ForegroundColor Yellow

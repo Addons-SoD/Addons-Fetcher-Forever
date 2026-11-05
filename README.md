@@ -51,7 +51,6 @@ Everything else has no Forever counterpart and was removed.
 | MinimapButtonButton | 1.24.15 | 1.60.1 |
 | Myslot | v6.2.1 | 1.60.1 |
 | Profession_Assistance | PA_V6.3.1 | 12.1.x (no 1.60 file) |
-| Questie | v12.6.0 | 1.60.1 |
 | RangeDisplay | v6.3.7 | 1.60.1 |
 | RareScanner | RareScanner_FOREVER_1.60.1.1 | 1.60.1 |
 | SpellActivationOverlay | SpellActivationOverlay-2.8.9-forever | 1.60.1 |
@@ -62,11 +61,14 @@ Everything else has no Forever counterpart and was removed.
 | _DebugLog | 1.3.3 | 12.0.x (no 1.60 file) |
 | LoonBestInSlot | LoonBestInSlot-retail-v1.1.3 | 12.1.0 |
 
-### Dropped (19)
+### Dropped (20)
 
 Addons without any Forever/Mainline build were dropped by the CurseForge
 filter. `Details` and `Leatrix_Maps` were removed on request even though they
-publish a 1.60.1 file.
+publish a 1.60.1 file. `Questie` is dropped because the shipped package has no
+Forever data set: its TOC falls back to the "game client not supported" file
+and `LibQuestieDB` is missing, so every data module dies with
+`attempt to index global 'LibQuestieDB' (a nil value)`.
 
 | Addon | Reason |
 | --- | --- |
@@ -81,6 +83,7 @@ publish a 1.60.1 file.
 | Leatrix_Maps | removed on request (has a 1.60.1 build) |
 | LiteButtonAuras | Classic-era API only |
 | NovaWorldBuffs | Classic world-buff data only |
+| Questie | no Forever data set (LibQuestieDB missing); TOC reports "client not supported" |
 | Spy | Classic Era only |
 | WeakAuras | no Mainline/Forever file; battle addons are restricted in Forever |
 | WeWantBlueShamans | Classic Era only |
