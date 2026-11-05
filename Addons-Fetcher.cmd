@@ -106,7 +106,6 @@ $Projects = @(
 # Era / Season of Discovery repositories stay completely untouched.
 # Each entry: repo name on GitHub -> addon folder name -> branch to fetch.
 $OwnRepos = @(
-  @{ Repo = 'RepairHelper-Forever';    Folder = 'RepairHelper';    Branch = 'main' },
   @{ Repo = 'TheBurningTrade-Forever'; Folder = 'TheBurningTrade'; Branch = 'main' },
   @{ Repo = 'WhisperPop-Forever';      Folder = 'WhisperPop';      Branch = 'main' }
 )

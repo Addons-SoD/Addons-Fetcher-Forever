@@ -100,11 +100,10 @@ existing `*-SoD` naming). The deployer always fetches the `main` branch of
 those repositories, so the Classic Era / Season of Discovery repositories
 are never referenced and their addon state is never touched.
 
-Deployed by default (3):
+Deployed by default (2):
 
 | Addon | Repository |
 | --- | --- |
-| RepairHelper | [RepairHelper-Forever](https://github.com/Addons-SoD/RepairHelper-Forever) |
 | TheBurningTrade | [TheBurningTrade-Forever](https://github.com/Addons-SoD/TheBurningTrade-Forever) |
 | WhisperPop | [WhisperPop-Forever](https://github.com/Addons-SoD/WhisperPop-Forever) |
 
@@ -113,6 +112,7 @@ Ported but not deployed (repository stays on GitHub; add the entry back to
 
 | Addon | Repository | Note |
 | --- | --- | --- |
+| RepairHelper | [RepairHelper-Forever](https://github.com/Addons-SoD/RepairHelper-Forever) | removed on request |
 | SellerHelper | [SellerHelper-Forever](https://github.com/Addons-SoD/SellerHelper-Forever) | removed on request - XML OnLoad handlers still fail on the 1.60 client |
 | BFGadgets | `Addons-SoD/BFGadgets-SoD` branch `wow-forever` | removed on request |
 | BiaoGe | `Addons-SoD/BiaoGe-SoD` branch `wow-forever` | removed on request |
