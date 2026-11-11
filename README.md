@@ -32,7 +32,7 @@ The Classic Era list was filtered against the CurseForge API: a project is
 kept only when it publishes a Forever (1.60.x) or Mainline (12.x/11.x) file.
 Everything else has no Forever counterpart and was removed.
 
-### Kept (26)
+### Kept (27)
 
 | Addon | Newest compatible file | Version family |
 | --- | --- | --- |
@@ -50,6 +50,7 @@ Everything else has no Forever counterpart and was removed.
 | MessageQueue | MessageQueue 0.9.4 | 1.60.1 |
 | MinimapButtonButton | 1.24.15 | 1.60.1 |
 | Myslot | v6.2.1 | 1.60.1 |
+| OpenMap | OpenMap v0.8.3 (WoW Forever) | 1.60.1 |
 | Profession_Assistance | PA_V6.3.1 | 12.1.x (no 1.60 file) |
 | Questie | v12.6.0 (Questie_Forever.toc) | 1.60.1 |
 | QuestieDB | v1.0.10 (Forever) | 1.60.1 |

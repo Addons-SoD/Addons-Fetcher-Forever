@@ -89,6 +89,7 @@ $Projects = @(
   @{ Name = 'MessageQueue';             Id = 358350  },
   @{ Name = 'MinimapButtonButton';      Id = 446096  },
   @{ Name = 'Myslot';                   Id = 48863   },
+  @{ Name = 'OpenMap';                  Id = 1735937 },
   @{ Name = 'Profession_Assistance';    Id = 65085   },
   @{ Name = 'Questie';                  Id = 334372  },
   @{ Name = 'QuestieDB';                Id = 1696795 },
