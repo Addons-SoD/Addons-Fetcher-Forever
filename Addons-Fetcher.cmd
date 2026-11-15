@@ -657,6 +657,7 @@ function Get-ForeverToc([string]$dir){
   $name = Split-Path -Leaf $dir
   foreach($c in @(
       (Join-Path $dir ($name + '.toc')),
+      (Join-Path $dir ($name + '_Forever.toc')),
       (Join-Path $dir ($name + '_Camelot.toc')),
       (Join-Path $dir ($name + '_Mainline.toc'))
     )){
