@@ -659,7 +659,9 @@ function Get-ForeverToc([string]$dir){
   foreach($c in @(
       (Join-Path $dir ($name + '.toc')),
       (Join-Path $dir ($name + '_Forever.toc')),
+      (Join-Path $dir ($name + '-Forever.toc')),
       (Join-Path $dir ($name + '_Camelot.toc')),
+      (Join-Path $dir ($name + '-Camelot.toc')),
       (Join-Path $dir ($name + '_Mainline.toc'))
     )){
     if(Test-Path -LiteralPath $c){ return $c }
