@@ -74,8 +74,9 @@ $CoreHeaders = @{ 'x-api-key' = $CfApiKey; 'Accept' = 'application/json' }
 # build on CurseForge. Classic-only addons from the SoD list were dropped -
 # the full keep/drop table is in README.md.
 # Note: Details and Leatrix_Maps were intentionally removed from the set.
+# Auctionator was replaced by EasyAuction: on Forever its auction scans never
+# reach the price database, and its auction-house UI collides with EasyAuction.
 $Projects = @(
-  @{ Name = 'Auctionator';              Id = 6124    },
   @{ Name = 'AutoFlood';                Id = 21367   },
   @{ Name = 'Baganator';                Id = 914482  },
   @{ Name = 'BigWigs';                  Id = 2382    },

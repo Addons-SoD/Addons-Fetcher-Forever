@@ -32,11 +32,10 @@ The Classic Era list was filtered against the CurseForge API: a project is
 kept only when it publishes a Forever (1.60.x) or Mainline (12.x/11.x) file.
 Everything else has no Forever counterpart and was removed.
 
-### Kept (29)
+### Kept (28)
 
 | Addon | Newest compatible file | Version family |
 | --- | --- | --- |
-| Auctionator | 341 | 1.60.1 |
 | AutoFlood | AutoFlood 1.6.4 | 1.60.1 |
 | Baganator | 840 | 1.60.1 |
 | BigWigs | v427.8 | 1.60.1 |
@@ -66,7 +65,7 @@ Everything else has no Forever counterpart and was removed.
 | _DebugLog | 1.3.3 | 12.0.x (no 1.60 file) |
 | LoonBestInSlot | LoonBestInSlot-retail-v1.1.3 | 12.1.0 |
 
-### Dropped (19)
+### Dropped (20)
 
 Addons without any Forever/Mainline build were dropped by the CurseForge
 filter. `Details` and `Leatrix_Maps` were removed on request even though they
@@ -80,6 +79,7 @@ produces `attempt to index global 'LibQuestieDB' (a nil value)`.
 | Addon | Reason |
 | --- | --- |
 | AtlasLootClassic | files only for 1.15.x / 2.5.x, no Mainline build |
+| Auctionator | replaced by EasyAuction (its Forever scans never reach the price DB; AH UI collided) |
 | BigWigs_Classic | Classic Era / SoD content pack - BigWigs itself ships the Forever modules |
 | CharacterStatsClassic | Classic Era only |
 | Details | removed on request (has a 1.60.1 build) |
