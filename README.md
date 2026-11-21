@@ -32,7 +32,7 @@ The Classic Era list was filtered against the CurseForge API: a project is
 kept only when it publishes a Forever (1.60.x) or Mainline (12.x/11.x) file.
 Everything else has no Forever counterpart and was removed.
 
-### Kept (28)
+### Kept (29)
 
 | Addon | Newest compatible file | Version family |
 | --- | --- | --- |
@@ -58,6 +58,7 @@ Everything else has no Forever counterpart and was removed.
 | RangeDisplay | v6.3.7 | 1.60.1 |
 | RareScanner | RareScanner_FOREVER_1.60.1.1 | 1.60.1 |
 | SpellActivationOverlay | SpellActivationOverlay-2.8.9-forever | 1.60.1 |
+| Spy | Spy-1.3.8-forever26.zip | 1.60.1 |
 | Syndicator | 289 | 1.60.1 |
 | ThreatClassic2 | 2.75-forever | 1.60.1 |
 | TotemTimers | 5.0.13 | 1.60.1 |
@@ -65,7 +66,7 @@ Everything else has no Forever counterpart and was removed.
 | _DebugLog | 1.3.3 | 12.0.x (no 1.60 file) |
 | LoonBestInSlot | LoonBestInSlot-retail-v1.1.3 | 12.1.0 |
 
-### Dropped (20)
+### Dropped (19)
 
 Addons without any Forever/Mainline build were dropped by the CurseForge
 filter. `Details` and `Leatrix_Maps` were removed on request even though they
@@ -90,7 +91,6 @@ produces `attempt to index global 'LibQuestieDB' (a nil value)`.
 | Leatrix_Maps | removed on request (has a 1.60.1 build) |
 | LiteButtonAuras | Classic-era API only |
 | NovaWorldBuffs | Classic world-buff data only |
-| Spy | Classic Era only |
 | WeakAuras | no Mainline/Forever file; battle addons are restricted in Forever |
 | WeWantBlueShamans | Classic Era only |
 | alaGearMan | Cata/Mists only |

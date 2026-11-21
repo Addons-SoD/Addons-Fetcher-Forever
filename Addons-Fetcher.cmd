@@ -99,6 +99,7 @@ $Projects = @(
   @{ Name = 'RangeDisplay';             Id = 14570   },
   @{ Name = 'RareScanner';              Id = 84208   },
   @{ Name = 'SpellActivationOverlay';   Id = 649417  },
+  @{ Name = 'Spy';                      Id = 1701654 },
   @{ Name = 'Syndicator';               Id = 988370  },
   @{ Name = 'ThreatClassic2';           Id = 355497  },
   @{ Name = 'TotemTimers';              Id = 339602  },
