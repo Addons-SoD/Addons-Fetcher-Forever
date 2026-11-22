@@ -87,6 +87,7 @@ $Projects = @(
   @{ Name = 'Decursive';                Id = 2154    },
   @{ Name = 'DungeonsForever';          Id = 1709577 },
   @{ Name = 'EasyAuction';              Id = 1595608 },
+  @{ Name = 'ForeverAuras';             Id = 1703325 },
   @{ Name = 'ForeverBestiary';          Id = 1736267 },
   @{ Name = 'idTip';                    Id = 24541   },
   @{ Name = 'MessageQueue';             Id = 358350  },

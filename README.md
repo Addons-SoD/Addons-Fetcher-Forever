@@ -32,7 +32,7 @@ The Classic Era list was filtered against the CurseForge API: a project is
 kept only when it publishes a Forever (1.60.x) or Mainline (12.x/11.x) file.
 Everything else has no Forever counterpart and was removed.
 
-### Kept (29)
+### Kept (30)
 
 | Addon | Newest compatible file | Version family |
 | --- | --- | --- |
@@ -46,6 +46,7 @@ Everything else has no Forever counterpart and was removed.
 | Decursive | 2.9.0-RC4-forever | 1.60.1 |
 | DungeonsForever | DungeonsForever2.0.17.zip | 1.60.1 |
 | EasyAuction | EasyAuction-V20261119.3.zip | 1.60.1 |
+| ForeverAuras | 1.4.6 | 1.60.1 |
 | ForeverBestiary | ForeverBestiary-1.2.zip | 1.60.1 |
 | idTip | 12.1.8 | 1.60.1 |
 | MessageQueue | MessageQueue 0.9.4 | 1.60.1 |
