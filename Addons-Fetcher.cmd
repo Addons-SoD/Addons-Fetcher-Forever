@@ -84,6 +84,7 @@ $Projects = @(
   @{ Name = 'BlizzMove';                Id = 17809   },
   @{ Name = 'BugGrabber';               Id = 13344   },
   @{ Name = 'BugSack';                  Id = 6273    },
+  @{ Name = 'CopyChat';                 Id = 1733263 },
   @{ Name = 'Decursive';                Id = 2154    },
   @{ Name = 'DungeonsForever';          Id = 1709577 },
   @{ Name = 'EasyAuction';              Id = 1595608 },
