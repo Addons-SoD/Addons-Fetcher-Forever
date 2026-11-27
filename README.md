@@ -108,10 +108,11 @@ existing `*-SoD` naming). The deployer always fetches the `main` branch of
 those repositories, so the Classic Era / Season of Discovery repositories
 are never referenced and their addon state is never touched.
 
-Deployed by default (2):
+Deployed by default (3):
 
 | Addon | Repository |
 | --- | --- |
+| NanoCopy | [NanoCopy-Forever](https://github.com/Addons-SoD/NanoCopy-Forever) |
 | TheBurningTrade | [TheBurningTrade-Forever](https://github.com/Addons-SoD/TheBurningTrade-Forever) |
 | WhisperPop | [WhisperPop-Forever](https://github.com/Addons-SoD/WhisperPop-Forever) |
 
