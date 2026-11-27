@@ -90,6 +90,7 @@ $Projects = @(
   @{ Name = 'ForeverAuras';             Id = 1703325 },
   @{ Name = 'ForeverBestiary';          Id = 1736267 },
   @{ Name = 'idTip';                    Id = 24541   },
+  @{ Name = 'LoonBestInSlot';           Id = 570934  },
   @{ Name = 'MessageQueue';             Id = 358350  },
   @{ Name = 'MinimapButtonButton';      Id = 446096  },
   @{ Name = 'Myslot';                   Id = 48863   },
@@ -105,8 +106,7 @@ $Projects = @(
   @{ Name = 'ThreatClassic2';           Id = 355497  },
   @{ Name = 'TotemTimers';              Id = 339602  },
   @{ Name = 'Transcriptor';             Id = 14837   },
-  @{ Name = '_DebugLog';                Id = 382165  },
-  @{ Name = 'LoonBestInSlot';           Id = 570934  }
+  @{ Name = '_DebugLog';                Id = 382165  }
 )
 
 # Own addons from the dedicated '*-Forever' repositories. The Forever port
@@ -1018,6 +1018,9 @@ foreach($v in $toVerify){
 # ---- plan list ---------------------------------------------------------------
 $dropCf  = @{}   # state keys to remove at persist time
 $dropSod = @{}
+# Everything below lists addons alphabetically: the resolve phase is parallel, so
+# $resolved is in completion order and would read as a random jumble.
+$resolved = @($resolved | Sort-Object -Property Name)
 Write-Host ''
 Write-Host '  Plan: (* up to date, + will download, ! damaged, x resolve failed, - delete)' -ForegroundColor Gray
 # Shorten a long file name in the middle so the plan row stays on one line.
@@ -1033,7 +1036,9 @@ function Add-PlanLine($sym,$color,$name,$state,$file){
   $line += $state
   Write-Host (Truncate-Text $line $ConWidth) -ForegroundColor $color
 }
-foreach($r in $resolved){
+# Alphabetical order keeps the plan list easy to scan (the resolve phase runs in
+# parallel, so $resolved arrives in completion order).
+foreach($r in @($resolved | Sort-Object -Property Name)){
   if($r.Plan -eq 'skip'){
     Add-PlanLine $SymOk 'Green' $r.Name 'up to date (md5 ok)' ([string]$r.ZipName)
   } elseif($r.Damaged){
@@ -1043,7 +1048,7 @@ foreach($r in $resolved){
   }
 }
 foreach($d in $cfDelete){ Add-PlanLine $SymDel 'Red' $d.Key 'no longer in list' ''; $dropCf[$d.Key] = $true }
-foreach($s in $OwnRepos){
+foreach($s in @($OwnRepos | Sort-Object -Property Folder)){
   # GitHub side has no zip name: show the codeload commit hash (first 7 chars).
   $gh = ''
   $et = $sodRemote[$s.Folder]
