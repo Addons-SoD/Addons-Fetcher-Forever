@@ -32,7 +32,7 @@ The Classic Era list was filtered against the CurseForge API: a project is
 kept only when it publishes a Forever (1.60.x) or Mainline (12.x/11.x) file.
 Everything else has no Forever counterpart and was removed.
 
-### Kept (31)
+### Kept (30)
 
 | Addon | Newest compatible file | Version family |
 | --- | --- | --- |
@@ -43,7 +43,6 @@ Everything else has no Forever counterpart and was removed.
 | BlizzMove | v3.8.6 | 1.60.1 |
 | BugGrabber | v12.1.1 | 1.60.1 |
 | BugSack | v12.1.9 | 1.60.1 |
-| CopyChat | CopyChat v2.1.6.zip | 1.60.1 |
 | Decursive | 2.9.0-RC4-forever | 1.60.1 |
 | DungeonsForever | DungeonsForever2.0.17.zip | 1.60.1 |
 | EasyAuction | EasyAuction-V20261119.3.zip | 1.60.1 |
@@ -68,7 +67,7 @@ Everything else has no Forever counterpart and was removed.
 | _DebugLog | 1.3.3 | 12.0.x (no 1.60 file) |
 | LoonBestInSlot | LoonBestInSlot-retail-v1.1.3 | 12.1.0 |
 
-### Dropped (19)
+### Dropped (20)
 
 Addons without any Forever/Mainline build were dropped by the CurseForge
 filter. `Details` and `Leatrix_Maps` were removed on request even though they
@@ -82,6 +81,7 @@ produces `attempt to index global 'LibQuestieDB' (a nil value)`.
 | Addon | Reason |
 | --- | --- |
 | AtlasLootClassic | files only for 1.15.x / 2.5.x, no Mainline build |
+| CopyChat | removed on request - replaced by the NanoCopy-Forever addon |
 | Auctionator | replaced by EasyAuction (its Forever scans never reach the price DB; AH UI collided) |
 | BigWigs_Classic | Classic Era / SoD content pack - BigWigs itself ships the Forever modules |
 | CharacterStatsClassic | Classic Era only |
